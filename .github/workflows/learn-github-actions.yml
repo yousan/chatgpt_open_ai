@@ -15,6 +15,8 @@ jobs:
           curl -s https://api.openai.com/v1/chat/completions
           -H "Content-Type: application/json"
           -H "Authorization: Bearer ${{ secrets.OPEN_AI_KEY }}"
-          -d @request.json
+          -d @request.json | tee output.json | jq -r '.choices[0].message.content' > output.md
+      - run: echo output.json
+      - run: echo output.md
       - run: npm install -g bats
       - run: bats -v
