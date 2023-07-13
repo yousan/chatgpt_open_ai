@@ -12,7 +12,7 @@ jobs:
 
       - run: jq ".messages[0].content = \"$(cat prompt.md)\"" request_template.json > request.json
       - run: >
-          curl https://api.openai.com/v1/chat/completions
+          curl -s https://api.openai.com/v1/chat/completions
           -H "Content-Type: application/json"
           -H "Authorization: Bearer ${{ secrets.OPEN_AI_KEY }}"
           -d @request.json
