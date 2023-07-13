@@ -15,6 +15,6 @@ jobs:
           curl https://api.openai.com/v1/chat/completions
           -H "Content-Type: application/json"
           -H "Authorization: Bearer ${{ secrets.OPEN_AI_KEY }}"
-          -d '{"model": "gpt-3.5-turbo","messages": [{"role": "system", "content": "語尾ににゃーと付けてください"}, {"role": "user", "content": "どうやってAPIで呼び出しを行ったらいいですか？"}]}'
+          -d @prompt.md
       - run: npm install -g bats
       - run: bats -v
