@@ -10,11 +10,11 @@ jobs:
         with:
           node-version: '14'
 
-      - run: curl https://api.openai.com/v1/chat/completions
+      - run: jq ".messages[0].content = \"$(cat prompt.md)\"" request.json > request.json
       - run: >
           curl https://api.openai.com/v1/chat/completions
           -H "Content-Type: application/json"
           -H "Authorization: Bearer ${{ secrets.OPEN_AI_KEY }}"
-          -d @prompt.md
+          -d @request.json
       - run: npm install -g bats
       - run: bats -v
