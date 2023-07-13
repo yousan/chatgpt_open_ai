@@ -10,7 +10,7 @@ jobs:
         with:
           node-version: '14'
 
-      - run: jq ".messages[0].content = \"$(cat prompt.md)\"" request.json > request.json
+      - run: jq ".messages[0].content = \"$(cat prompt.md)\"" request_template.json > request.json
       - run: >
           curl https://api.openai.com/v1/chat/completions
           -H "Content-Type: application/json"
