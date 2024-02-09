@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-7gEF3o3YzsYCtq5B2djXqDmey0K9n",
+  "object": "chat.completion",
+  "created": 1690298877,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```typescript\n/**\n * ゲーム進行を制御するクラス\n */\nclass Game {\n  private board: string[][]; // 盤面\n  private currentPlayer: string; // 現在のプレイヤー\n  private passCount: number; // パス回数\n\n  constructor() {\n    this.board = this.createBoard(); // 盤面の初期化\n    this.currentPlayer = 'B'; // 黒石が先手\n    this.passCount = 0; // パス回数の初期化\n  }\n\n  /**\n   * 盤面の初期化を行う関数\n   * @returns 初期化された盤面\n   */\n  private createBoard(): string[][] {\n    const board: string[][] = [];\n\n    for (let i = 0; i < 8; i++) {\n      board[i] = [];\n\n      for (let j = 0; j < 8; j++) {\n        board[i][j] = ' ';\n      }\n    }\n\n    // 蛇腹配置で初期配置をセット\n    board[3][3] = 'W';\n    board[3][4] = 'B';\n    board[4][3] = 'B';\n    board[4][4] = 'W';\n\n    return board;\n  }\n\n  /**\n   * 石を置く関数\n   * @param row 行\n   * @param col 列\n   * @returns 石を置くことができたかどうか\n   */\n  public placePiece(row: number, col: number): boolean {\n    if (this.isValidMove(row, col)) {\n      // 石を置く処理\n\n      // 8方向に対して挟むことができる石を探す\n      // 挟んだ石をひっくり返す処理\n\n      this.board[row][col] = this.currentPlayer; // 石を置く\n\n      // プレイヤーの交代\n      this.currentPlayer = this.currentPlayer === 'B' ? 'W' : 'B';\n\n      this.passCount = 0; // パス回数をリセット\n\n      return true;\n    } else {\n      console.log('不正な座標です。再入力してください。');\n      return false;\n    }\n  }\n\n  /**\n   * 石が置けるかどうかを判定する関数\n   * @param row 行\n   * @param col 列\n   * @returns 石を置くことができるかどうか\n   */\n  private isValidMove(row: number, col: number): boolean {\n    // 今は常に true を返す仮実装\n    return true;\n  }\n\n  /**\n   * パスする関数\n   */\n  public pass(): void {\n    this.passCount++;\n\n    if (this.passCount === 2) {\n      this.endGame(); // ゲーム終了\n    } else {\n      console.log('パスしました。次のプレイヤーの番です。');\n      this.currentPlayer = this.currentPlayer === 'B' ? 'W' : 'B'; // プレイヤーの交代\n    }\n  }\n\n  /**\n   * ゲーム終了判定と勝者判定を行う関数\n   */\n  private endGame(): void {\n    const blackCount = this.countPieces('B');\n    const whiteCount = this.countPieces('W');\n\n    if (blackCount > whiteCount) {\n      console.log('黒の勝ちです！');\n    } else if (blackCount < whiteCount) {\n      console.log('白の勝ちです！');\n    } else {\n      console.log('引き分けです！');\n    }\n  }\n\n  /**\n   * 盤面の石の数を数える関数\n   * @param piece 石の種類\n   * @returns 石の数\n   */\n  private countPieces(piece: string): number {\n    let count = 0;\n\n    for (let i = 0; i < 8; i++) {\n      for (let j = 0; j < 8; j++) {\n        if (this.board[i][j] === piece) {\n          count++;\n        }\n      }\n    }\n\n    return count;\n  }\n\n  /**\n   * 盤面の表示を行う関数\n   */\n  public displayBoard(): void {\n    for (let i = 0; i < 8; i++) {\n      let row = '';\n\n      for (let j = 0; j < 8; j++) {\n        row += this.board[i][j] + ' ';\n      }\n\n      console.log(row);\n    }\n  }\n}\n\nexport default Game;\n```"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1028,
+    "completion_tokens": 1086,
+    "total_tokens": 2114
+  }
+}

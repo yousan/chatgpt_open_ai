@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-7gEF3xANrp4QHv48u0XVKZvsQ6goy",
+  "object": "chat.completion",
+  "created": 1690298877,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```typescript\n/**\n * ゲームのユーザーインターフェースを管理するクラス\n */\nclass GameUI {\n  /**\n   * ボードの描画\n   * @param board 盤面の状態\n   */\n  drawBoard(board: string[][]) {\n    console.log(\"=== オセロ盤 ===\");\n    for (let i = 0; i < 8; i++) {\n      let row = \"\";\n      for (let j = 0; j < 8; j++) {\n        row += board[i][j] + \" \";\n      }\n      console.log(row);\n    }\n    console.log(\"================\");\n  }\n\n  /**\n   * プレイヤーの石の配置位置の入力\n   * @returns 座標（行、列）\n   */\n  inputMovePosition(): { row: number, col: number } {\n    let row = parseInt(prompt(\"行を入力してください（0~7）：\"));\n    let col = parseInt(prompt(\"列を入力してください（0~7）：\"));\n    return { row, col };\n  }\n\n  /**\n   * ゲームの進行状況の表示\n   * @param turn 現在の手番（\"先手\"または\"後手\"）\n   * @param passCount パス回数\n   */\n  showGameStatus(turn: string, passCount: number) {\n    console.log(\"=== ゲーム進行状況 ===\");\n    console.log(\"現在の手番：\" + turn);\n    console.log(\"パス回数：\" + passCount);\n    console.log(\"===================\");\n  }\n\n  /**\n   * ゲーム結果の表示\n   * @param result 勝利プレーヤーの表示\n   */\n  showGameResult(result: string) {\n    console.log(\"=== ゲーム結果 ===\");\n    console.log(result);\n    console.log(\"=================\");\n  }\n\n  /**\n   * 例外処理：不正な座標の入力\n   */\n  showErrorInputMessage() {\n    console.log(\"不正な座標が入力されました。再入力してください。\");\n  }\n\n  /**\n   * 例外処理：置ける場所がない\n   */\n  showNoPlaceToPutMessage() {\n    console.log(\"置ける場所がありません。パスしてください。\");\n  }\n}\n```"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1053,
+    "completion_tokens": 557,
+    "total_tokens": 1610
+  }
+}

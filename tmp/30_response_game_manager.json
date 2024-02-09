@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-7e2uSHLfOQ8onT2wR9KUyzPnwOK4Z",
+  "object": "chat.completion",
+  "created": 1689778660,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```javascript\n/**\n * GameManagerクラス\n * ゲームの進行や表示を制御するクラス\n */\nclass GameManager {\n  /**\n   * ゲームの開始を制御するメソッド\n   */\n  startGame() {\n    // ゲームの初期化処理\n    this.initializeGame();\n\n    // ゲームの進行処理\n    while (!this.isGameOver()) {\n      this.displayBoard();\n      this.displayPlayerTurn();\n      const input = this.getPlayerInput();\n\n      if (this.isValidInput(input)) {\n        const [row, col] = input;\n        if (this.isValidMove(row, col)) {\n          this.placeStone(row, col);\n          this.flipStones(row, col);\n          this.nextPlayerTurn();\n        } else {\n          this.displayErrorMessage();\n        }\n      } else {\n        this.displayErrorMessage();\n      }\n    }\n\n    // ゲーム終了処理\n    this.displayBoard();\n    this.displayWinner();\n  }\n\n  /**\n   * 勝者を表示するメソッド\n   */\n  displayWinner() {\n    const blackCount = this.countStones(\"B\");\n    const whiteCount = this.countStones(\"W\");\n\n    if (blackCount > whiteCount) {\n      console.log(\"黒の勝利です！\");\n    } else if (blackCount < whiteCount) {\n      console.log(\"白の勝利です！\");\n    } else {\n      console.log(\"引き分けです！\");\n    }\n  }\n\n  /**\n   * エラーメッセージを表示するメソッド\n   */\n  displayErrorMessage() {\n    console.log(\"無効な座標です。もう一度入力してください。\");\n  }\n\n  // 以下、省略\n}\n```"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1048,
+    "completion_tokens": 403,
+    "total_tokens": 1451
+  }
+}

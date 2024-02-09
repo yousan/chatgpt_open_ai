@@ -1,0 +1,21 @@
+{
+  "id": "chatcmpl-7gEF35NQosEAZx9WraYQS4OGQpvBl",
+  "object": "chat.completion",
+  "created": 1690298877,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```typescript\n/**\n * AIPlayerクラス\n * - CPUプレイヤーを表すクラス\n * - プレイヤーの情報（色、手番）の管理\n * - 石の配置位置の決定（AIロジック）\n * - 石の追加、変更\n */\nclass AIPlayer {\n  private color: string;  // プレイヤーの石の色（\"B\" or \"W\"）\n  private turn: boolean;  // プレイヤーの手番（true: 先手, false: 後手）\n  \n  /**\n   * AIPlayerクラスのコンストラクタ\n   *\n   * @param {string} color - プレイヤーの石の色（\"B\" or \"W\"）\n   */\n  constructor(color: string) {\n    this.color = color;\n    this.turn = false;\n  }\n  \n  /**\n   * 石の追加\n   *\n   * @param {number} x - 石を追加するx座標\n   * @param {number} y - 石を追加するy座標\n   */\n  addStone(x: number, y: number): void {\n    // 石の追加処理\n  }\n  \n  /**\n   * 石の変更\n   *\n   * @param {number} x - 石を変更するx座標\n   * @param {number} y - 石を変更するy座標\n   */\n  changeStone(x: number, y: number): void {\n    // 石の変更処理\n  }\n  \n  /**\n   * 石の配置位置の決定\n   *\n   * @return {Object} - 石を配置する座標（{ x: number, y: number }）\n   */\n  decidePosition(): { x: number, y: number } {\n    // AIのロジックに基づいて石の配置位置を決定する処理\n    // 石を配置する座標をx座標とy座標のオブジェクトとして返す\n    const x = 0;  // 例として0で固定\n    const y = 0;  // 例として0で固定\n    return { x, y };\n  }\n}\n```"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1037,
+    "completion_tokens": 571,
+    "total_tokens": 1608
+  }
+}
