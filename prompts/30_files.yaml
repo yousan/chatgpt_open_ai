@@ -1,47 +1,59 @@
 files:
-  - file_slug: components/Board.vue
+  - file_slug: board
     classname: Board
     filename: Board.vue
-    responsibility: 盤面を表示するためのコンポーネントクラス
-    methods:
-      - renderBoard: 盤面を表示するための関数
-      - handleClick: クリックされたマス目に石を配置するための関数
-      - updateBoard: 盤面の状態を更新するための関数
-      - checkValidMove: 石の配置の有効性を確認するための関数
-      - flipStones: 石を裏返すための関数
-      - checkGameEnd: ゲーム終了条件を判定するための関数
-      - showResult: 勝敗の判定結果を表示するための関数
-  
-  - file_slug: components/CPU.vue
+    responsibility: |
+      - 8x8のグリッドを表示し、オセロの各マスを管理します。
+      - 初期状態で中央に黒石2つと白石2つを配置します。
+      - プレイヤーが石を置いた際に、石の反転処理を行います。
+      - 石を置ける場所を計算し、ヒントとして表示します。
+      - 各プレイヤーのスコアを計算し、表示します。
+    methods: |
+      - initBoard(): ボードを初期化し、中央に石を配置します。
+      - placeStone(x, y, color): 指定された位置に石を置き、必要に応じて石を反転させます。
+      - computeValidMoves(color): 指定された色のプレイヤーが石を置ける場所を計算します。
+      - updateScores(): プレイヤーのスコアを更新し、表示します。
+      - checkGameOver(): ゲームが終了したかどうかをチェックし、終了していれば勝敗を表示します。
+
+  - file_slug: player
+    classname: Player
+    filename: Player.vue
+    responsibility: |
+      - プレイヤーのアクションを管理します。
+      - マウスやタッチ操作によって石を置くマスを選択します。
+      - プレイヤーが石を置く操作をBoardクラスに渡します。
+    methods: |
+      - chooseMove(): ユーザーインターフェイスから石を置く位置を選択します。
+
+  - file_slug: cpu
     classname: CPU
     filename: CPU.vue
-    responsibility: CPUの思考を行うためのコンポーネントクラス
-    methods:
-      - calculateMove: 石の配置位置を決定するための関数
-  
-  - file_slug: components/Result.vue
-    classname: Result
-    filename: Result.vue
-    responsibility: ゲームの結果を表示するためのコンポーネントクラス
-    methods:
-      - showResult: 勝敗の判定結果を表示するための関数
-  
-  - file_slug: store/index.js
-    classname: GameStore
-    filename: index.js
-    responsibility: ゲームの状態を管理するためのストアクラス
-    methods:
-      - state: ゲームの状態を保持するためのデータ
-      - getters: ゲームの状態に関する情報を提供するための関数
-      - mutations: ゲームの状態を更新するための関数
-      - actions: ゲームの進行を管理するための関数
-  
-  - file_slug: utils/OthelloUtils.js
-    classname: OthelloUtils
-    filename: OthelloUtils.js
-    responsibility: オセロゲームの状態やルールに関する処理を提供するクラス
-    methods:
-      - initializeBoard: 盤面を初期化するための関数
-      - checkValidMove: 石の配置の有効性を確認するための関数
-      - flipStones: 石を裏返すための関数
-      - calculateWinner: 勝者を計算するための関数
+    responsibility: |
+      - CPUの操作を管理します。
+      - ゲームの状況に基づき、最適な石の置き場所を計算します。
+      - 計算した位置に石を置く操作をBoardクラスに渡します。
+    methods: |
+      - calculateBestMove(): 現在のボードの状態から最適な石の置き場所を計算します。
+
+  - file_slug: game_manager
+    classname: GameManager
+    filename: GameManager.vue
+    responsibility: |
+      - ゲーム全体の進行管理を行います。
+      - ターンの管理、プレイヤーとCPUの操作を交互に行わせます。
+      - ゲームの開始、終了、リスタートを管理します。
+    methods: |
+      - startGame(): ゲームを開始します。ボードの初期化、プレイヤーとCPUの準備を行います。
+      - switchTurn(): ターンを交代しますsname: GameManager
+    filename: GameManager.vue
+    responsibility: |
+      - ゲーム全体の進行管理を行います。
+      - ターンの管理、プレイヤーとCPUの操作を交互に行わせます。
+      - ゲームの開始、終了、リスタートを管理します。
+    methods: |
+      - startGame(): ゲームを開始します。ボードの初期化、プレイヤーとCPUの準備を行います。
+      - switchTurn(): ターンを交代します。
+      - endGame(): ゲームを終了し、勝敗を表示します。
+      - restartGame(): ゲームをリスタートします。ボードと各プレイヤーの状態を初期化します。。
+      - endGame(): ゲームを終了し、勝敗を表示します。
+      - restartGame(): ゲームをリスタートします。ボードと各プレイヤーの状態を初期化します。

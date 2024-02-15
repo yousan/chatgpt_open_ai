@@ -10,6 +10,8 @@
 - 次の仕様を満たすシステム制作において、必要なクラスの詳細設計を行ってください。
 - 出力形式はyamlにして、マークダウン形式で出力してください。
 - ソースコードのファイルでは下記のように、ファイル名（filename）、クラス名（classname）、責務（responsibility）、メソッド（methods）を記載してください。
+- ファイル名についてはスラッシュをいれず、フラットなファイル構造としてください。
+- 責務については文章量が増えてもよいので網羅的に、抜け漏れが無いように記載してください。
 
 ```yaml
 files:
@@ -19,11 +21,6 @@ files:
   - responsibility:
   - methods
 ```
-
-
-- file_slugについては拡張子、スラッシュをいれず、フラットなファイル構造としてください
-- 責務については文章量が増えてもよいので網羅的に、抜け漏れが無いように記載してください。
-
 
 # 仕様書
 オセロの定義、ルール:
@@ -51,13 +48,10 @@ files:
 
 以上が、オセロゲーム作成のためのシステムの仕様書となります。
 # 今回の指示
-file_slug: game
-classname: Game
-filename: game.js
-responsibility: ゲームの進行と結果表示を管理する
+filename: Helper.js
+classname: Helper
+responsibility: ゲームで使用するヘルパー関数を提供する
 methods:
-  - start(): ゲームを開始する処理
-  - play(): プレイヤーとCPUの手番を交互に行う処理
-  - updateGameStatus(): ゲームの状態を更新する処理
-  - isGameOver(): ゲーム終了条件を判定する処理
-  - displayResult(): 勝敗の結果を表示する処理
+  - isValidMove: 石の配置が有効かどうかを確認する
+  - flipStones: 石を裏返す
+  - checkGameEnd: ゲーム終了条件を判定する

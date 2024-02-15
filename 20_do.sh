@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# 20_shiyosho_prompt.md を元にリクエストを作成し、APIを呼び出す
+# 成果物: prompts/30_files.yaml (他: tmp/20_shiyosho_output.md, tmp/20_shiyosho_request.json, tmp/20_shiyosho_response.json)
+
 set -x
 
 file="20_shiyosho"

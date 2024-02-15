@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# 10_prompt.md を元にリクエストを作成し、APIを呼び出す
+# 成果物: 20_shiyosho.md (他: tmp/10_prompt_output.md, tmp/10_prompt_request.json, tmp/10_prompt_response.json)
 set -x
 
 file="10_prompt"
